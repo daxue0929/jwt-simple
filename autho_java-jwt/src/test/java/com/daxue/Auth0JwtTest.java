@@ -13,6 +13,7 @@ import java.io.*;
 import java.security.*;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
+import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 
@@ -53,9 +54,8 @@ public class Auth0JwtTest {
         priString = priString.replace(" ", "");
 
 
-        // 错误还不能解析私钥
-//        X509EncodedKeySpec priKey = new X509EncodedKeySpec(Base64.getDecoder().decode(priString));
-//        RSAPrivateKey rsaPriLicKey = (RSAPrivateKey) keyFactory.generatePrivate(priKey);
+        PKCS8EncodedKeySpec priKey = new PKCS8EncodedKeySpec(Base64.getDecoder().decode(priString));
+        RSAPrivateKey rsaPriLicKey = (RSAPrivateKey) keyFactory.generatePrivate(priKey);
 
 
         // RSA keyPair Generator
